@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <? require 'shop.php' ?>
+    <?php require 'shop.php' ?>
     
 </body>
 </html>

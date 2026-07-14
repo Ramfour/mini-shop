@@ -1,6 +1,17 @@
-<?php 
-// данные
+<?php
+
+/** @const float VAT_RATE Ставка НДС */
+define('VAT_RATE', 0.2);
+
+/** @const int DISCOUNT_THRESHOLD Порог скидки в копейках */
+define('DISCOUNT_THRESHOLD', 300000);
+
+/** @const float DISCOUNT_RATE Ставка скидки */
+define('DISCOUNT_RATE', 0.1);
+
+// Функции рассчета суммы, наличия скидки, НДС и количества товаров
 require 'analytics.php';
+
 
 // Массив продуктов
 $products = [
@@ -44,5 +55,5 @@ $categories = [
 ];
 
 
-
+// Вывод чека
 require 'receipt.php';

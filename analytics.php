@@ -3,7 +3,9 @@
 /**
  * @file analytics.php
  * @brief Вспомогательные функции для аналитики
- * @see shop.php константы VAT_RATE, DISCOUNT_THRESHOLD, DISCOUNT_RATE используются в shop.php
+ * @const VAT_RATE Ставка НДС {@see shop.php}
+ * @const DISCOUNT_THRESHOLD Порог скидки в копейках {@see shop.php}
+ * @const DISCOUNT_RATE Ставка скидки {@see shop.php}
  */
 // Вспомогательные функции для аналитики
 
@@ -18,18 +20,14 @@ function formatMoney(int $kopecks): string
 // Рассчет суммы, наличия скидки, НДС и количества товаров
 function calculateTotals(array $products): array
 {
-    /** @var int $itemSum Сумма заказа в копейках */
     $itemSum = 0;
-    /** @var int $itemNds Сумма НДС в копейках */
     $itemNds = 0;
-    /** @var int $itemCount Количество товаров */
     $itemCount = 0;
-    /** @var bool $hasDiscount Флаг наличия скидки */
     $hasDiscount = false;
 
     foreach ($products as $product) {
         $itemSum += $product['price'] * $product['count'];
-        $itemNds += floor(($product['price'] * $product['count']) * VAT_RATE); // НДС
+        $itemNds += intval(($product['price'] * $product['count']) * VAT_RATE); // НДС
         $itemCount += $product['count'];
     }
     $hasDiscount = $itemSum > DISCOUNT_THRESHOLD;

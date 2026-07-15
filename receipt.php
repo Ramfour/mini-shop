@@ -26,8 +26,10 @@ echo $titleUpper . PHP_EOL;
 echo $doubleLine . PHP_EOL;
 
 foreach ($products as $product) {
+    
     echo 'Товар: ' . $product['name'] . PHP_EOL;
     echo 'Цена за единицу: ' . formatMoney($product['price']) . PHP_EOL;
+    echo 'Сумма: ' . formatMoney($product['price'] * $product['count']) . PHP_EOL;
     echo 'Количество: ' . $product['count'] . PHP_EOL;
     echo "Категория:  {$categories[$product['category']]}" . PHP_EOL;
     echo PHP_EOL;
@@ -38,5 +40,5 @@ $result = calculateTotals($products);
 echo 'Итого: ' . formatMoney($result['sum']) . PHP_EOL;
 echo 'НДС 20%: ' . formatMoney($result['nds']) . PHP_EOL;
 echo 'Скидка: ' . ($result['discount'] ? 'Да' : 'Нет') . PHP_EOL;
-
+echo 'Количество товаров: ' . $result['count'] . PHP_EOL;
 echo '</pre>';

@@ -3,21 +3,15 @@
 /** 
  * @file receipt.php
  * @brief Вывод чека
- * @var array $products Массив товаров
+ * @var array $products Массив товаров {@see shop.php}
+ * @var array $categories Массив категорий {@see shop.php}
  * @see analytics.php функции formatMoney(), calculateTotals()
- * @see shop.php константы VAT_RATE, DISCOUNT_THRESHOLD, DISCOUNT_RATE используются в shop.php
- * @var int $itemSum Сумма заказа в копейках
- * @var int $itemNds Сумма НДС в копейках
- * @var int $itemCount Количество товаров
- * @var bool $hasDiscount Флаг наличия скидки
- * @var array $categories Массив категорий
  */
 
 // Вывод чека
 echo '<pre>';
 $title      = 'чек заказа';
 $titleUpper = mb_strtoupper($title, 'UTF-8');   // mb_strtoupper
-$titleLength = mb_strlen($titleUpper, 'UTF-8'); // mb_strlen
 $doubleLine = str_repeat('=', 40); // str_repeat
 $line = str_repeat('-', 40); // str_repeat
 

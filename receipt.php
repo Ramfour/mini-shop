@@ -44,7 +44,7 @@ echo $titleAnalytics . PHP_EOL;
 echo $doubleLine . PHP_EOL;
 echo 'Общая выручка: ' . formatMoney(getTotalRevenue($orders)) . PHP_EOL;
 echo 'Заказов со скидкой: ' . count(getOrdersWithDiscount($orders)) . PHP_EOL . PHP_EOL;
-echo 'Все заказы (по возрастанию суммы):' . PHP_EOL; // вылазит за рамки, сделать ограничение
+echo 'Все заказы (по возрастанию суммы):' . PHP_EOL; 
 $sortedOrders = sortOrdersByTotal($orders);
 foreach ($sortedOrders as $key => $order) {
     $orderSummary = getOrderSummary($order);

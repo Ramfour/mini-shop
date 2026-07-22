@@ -92,9 +92,41 @@ function sortOrdersByTotal(array $orders, string $direction = 'asc'): array
 {
     /* $compare - функция сравнения для usort, использует оператор spaceship (<=>) и
      тернарный оператор + стрелочные функции*/
+    $result = [...$orders];
     $compare = $direction === 'asc' ?
         (fn($a, $b) => $a['total'] <=> $b['total']) : (fn($a, $b) => $b['total'] <=> $a['total']);
-    usort($orders, $compare);
-    return $orders;
+    usort($result, $compare);
+    return $result;
 }
 
+/**
+ * Получить уникальные товары из массива заказов
+ * @param array $orders Массив заказов {@see shop.php}
+ * @return array Массив уникальных товаров
+ */
+function getItemsFromOrders(array $orders): array
+{
+    $result = [];
+    foreach ($orders as $order) {
+        $result = array_merge($result, $order['items']);
+    }
+    $result = array_values(array_unique($result));
+    return $result;
+}
+
+/**
+ * Получить общую выручку по массиву заказов
+ * @param array $orders Массив заказов {@see shop.php}
+ * @return int Общая выручка в копейках
+ */
+function getTotalRevenue(array $orders): int
+{
+    $sum = 0;
+    foreach ($orders as $order) {
+        if (!isset($order['total'])) {
+            throw new InvalidArgumentException("Order is missing 'total' key.");
+        }
+        $sum += $order['total'];
+    }
+    return $sum;
+}
